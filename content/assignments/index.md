@@ -3,7 +3,7 @@ title: "Assignments"
 date: 2023-02-14T01:19:06+02:00
 ---
 
-[Notebook source code](https://github.com/johnstef99/js-notebook)
+[Notebook source code](https://github.com/johnstef99/notebook)
 
 ---------
 
@@ -75,9 +75,3 @@ date: 2023-02-14T01:19:06+02:00
 
 #### Βιομηχανική Πληροφορική
 * [Εργασία 2022 - Silo](https://drive.google.com/drive/folders/1oSPkj8ns8Ju46sB1Oqd6e721F65jyWk4?usp=sharing)
-
-<br/>
-<br/>
-<a
-href="https://donate.cipherdogs.net/?address=43NR6AcQPGo7weCGouMm73UkJ3DmjMXXm4tBG8H4e4gLg1jQFCcb2DkURJyGiJyUyuSDFcqa8Emsxhjs8cS8JhA8Ah7tSm6"><img
-height="30" width="30" src="https://donate.cipherdogs.net//img/monero.png">  Donate XMR</a>
