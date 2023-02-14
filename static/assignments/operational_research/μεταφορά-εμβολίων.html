@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Μεταφορά Εμβολίων | Εργασία AMPL</title>
+  <meta name="description" content="Εργασία 8ου εξαμήνου Επιχειρισιακή Έρευνα" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Μεταφορά Εμβολίων | Εργασία AMPL" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Εργασία 8ου εξαμήνου Επιχειρισιακή Έρευνα" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Μεταφορά Εμβολίων | Εργασία AMPL" />
+  
+  <meta name="twitter:description" content="Εργασία 8ου εξαμήνου Επιχειρισιακή Έρευνα" />
+  
+
+<meta name="author" content="Στεφανίδης Ιωάννης" />
+
+
+<meta name="date" content="2021-07-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="μεταφορά-εγγράφων.html"/>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Επιχειρησιακή Έρευνα</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Το Πρόβλημα</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#σχέδιο-σωτηρία-έγγραφα"><i class="fa fa-check"></i><b>1.1</b> Σχέδιο Σωτηρία (έγγραφα)</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#σχέδιο-σωτηρία-εμβόλια-covid"><i class="fa fa-check"></i><b>1.2</b> Σχέδιο Σωτηρία (εμβόλια covid)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="μεταφορά-εγγράφων.html"><a href="μεταφορά-εγγράφων.html"><i class="fa fa-check"></i><b>2</b> Μεταφορά Εγγράφων</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="μεταφορά-εγγράφων.html"><a href="μεταφορά-εγγράφων.html#τρόπος-σκέψης"><i class="fa fa-check"></i><b>2.1</b> Τρόπος Σκέψης</a></li>
+<li class="chapter" data-level="2.2" data-path="μεταφορά-εγγράφων.html"><a href="μεταφορά-εγγράφων.html#περιορισμοί"><i class="fa fa-check"></i><b>2.2</b> Περιορισμοί</a></li>
+<li class="chapter" data-level="2.3" data-path="μεταφορά-εγγράφων.html"><a href="μεταφορά-εγγράφων.html#δεδομένα-ampl"><i class="fa fa-check"></i><b>2.3</b> Δεδομένα AMPL</a></li>
+<li class="chapter" data-level="2.4" data-path="μεταφορά-εγγράφων.html"><a href="μεταφορά-εγγράφων.html#mοντέλο-ampl"><i class="fa fa-check"></i><b>2.4</b> Mοντέλο AMPL</a></li>
+<li class="chapter" data-level="2.5" data-path="μεταφορά-εγγράφων.html"><a href="μεταφορά-εγγράφων.html#αποτελέσματα"><i class="fa fa-check"></i><b>2.5</b> Αποτελέσματα</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="μεταφορά-εμβολίων.html"><a href="μεταφορά-εμβολίων.html"><i class="fa fa-check"></i><b>3</b> Μεταφορά Εμβολίων</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="μεταφορά-εμβολίων.html"><a href="μεταφορά-εμβολίων.html#τρόπος-σκέψης-1"><i class="fa fa-check"></i><b>3.1</b> Τρόπος Σκέψης</a></li>
+<li class="chapter" data-level="3.2" data-path="μεταφορά-εμβολίων.html"><a href="μεταφορά-εμβολίων.html#περιορισμοί-1"><i class="fa fa-check"></i><b>3.2</b> Περιορισμοί</a></li>
+<li class="chapter" data-level="3.3" data-path="μεταφορά-εμβολίων.html"><a href="μεταφορά-εμβολίων.html#δεδομένα-ampl-1"><i class="fa fa-check"></i><b>3.3</b> Δεδομένα AMPL</a></li>
+<li class="chapter" data-level="3.4" data-path="μεταφορά-εμβολίων.html"><a href="μεταφορά-εμβολίων.html#mοντέλο-ampl-1"><i class="fa fa-check"></i><b>3.4</b> Mοντέλο AMPL</a></li>
+<li class="chapter" data-level="3.5" data-path="μεταφορά-εμβολίων.html"><a href="μεταφορά-εμβολίων.html#αποτελέσματα-1"><i class="fa fa-check"></i><b>3.5</b> Αποτελέσματα</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://notebook.johnstef.com">JS-Notebook</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Εργασία AMPL</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="μεταφορά-εμβολίων" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Μεταφορά Εμβολίων</h1>
+<div id="τρόπος-σκέψης-1" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Τρόπος Σκέψης</h2>
+<p>Στο 2<sup>ο</sup> ερώτημα ζητείτε να βρεθεί η πιο σύντομη σε χρόνο διαδρομή που
+περνάει απ’ όλες τις πόλεις και επιστρέφει στην πρωτεύουσα. Έχοντας ήδη
+κάνει το 1<sup>ο</sup> ερώτημα, μπορούμε να τροποποιήσουμε ελάχιστα το μοντέλο
+μας για να είναι λειτουργικό σε αυτό το πρόβλημα.</p>
+<p>Περνάμε λοιπόν τα νέα δεδομένα αλλά αυτή την φορά ορίζουμε μόνο ένα
+φορτηγό, αφού μας δίνεται ότι τα 5 φορτηγά θα φύγουν κομβόι. Στο μοντέλο
+θα αντικαταστήσουμε τον πίνακα <code>distance</code> με <code>minutes</code> καθώς και θα
+αλλάξουμε τον περιορισμό για την εκκίνηση από την αφετηρία ώστε να
+εννοούμε να χρησιμοποιηθεί κάθε διαθέσιμο φορτηγό (στην περίπτωση μας
+είναι μόνο 1).</p>
+</div>
+<div id="περιορισμοί-1" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Περιορισμοί</h2>
+<p>Έχουμε μόνο έναν νέο περιορισμό:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Επιστροφή στην πρωτεύουσα</strong>: θέλουμε η κίνηση που θα γίνει στο
+τελευταίο <code>TIME</code> να έχει προορισμό την πρωτεύουσα (που έχει
+ονομαστεί και <code>A</code> και <code>Ε</code>)</li>
+</ol>
+</div>
+<div id="δεδομένα-ampl-1" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Δεδομένα AMPL</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>trucks2.dat</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="hl kwa">set</span> BEGIN <span class="hl opt">:=</span> A  B1 B2 B3 B4 B5 B6<span class="hl opt">;</span>
+<span class="hl kwa">set</span> END <span class="hl opt">:=</span> B1 B2 B3 B4 B5 B6 E<span class="hl opt">;</span>
+<span class="hl kwa">set</span> TRUCK <span class="hl opt">:=</span> T1 <span class="hl opt">;</span>
+
+<span class="hl kwa">param</span> start<span class="hl opt">:=</span> A<span class="hl opt">;</span>
+<span class="hl kwa">param end</span><span class="hl opt">:=</span> E<span class="hl opt">;</span>
+
+<span class="hl kwa">param</span> minutes<span class="hl opt">:</span>  B1     B2    B3    B4    B5    B6     E   <span class="hl opt">:=</span>
+           A    <span class="hl num">786    549   657   331   559   250   000</span>
+           B1   <span class="hl num">000    668   979   593   224   905   786</span>
+           B2   <span class="hl num">668    000   316   607   472   467   549</span>
+           B3   <span class="hl num">979    316   000   890   769   400   657</span>
+           B4   <span class="hl num">593    607   890   000   386   559   331</span>
+           B5   <span class="hl num">224    472   769   386   000   681   559</span>
+           B6   <span class="hl num">905    467   400   559   681   000   250</span> <span class="hl opt">;</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 4.1, http://www.andre-simon.de/-->
+</div>
+<div id="mοντέλο-ampl-1" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Mοντέλο AMPL</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>trucks2.mod</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="hl kwa">set</span> BEGIN <span class="hl kwa">ordered</span><span class="hl opt">;</span>
+<span class="hl kwa">set</span> END <span class="hl kwa">ordered</span><span class="hl opt">;</span>
+<span class="hl kwa">set</span> TRUCK <span class="hl kwa">ordered</span><span class="hl opt">;</span>
+
+<span class="hl kwa">set</span> BEE <span class="hl opt">=</span> BEGIN <span class="hl kwa">inter</span> END <span class="hl kwa">ordered</span><span class="hl opt">;</span>
+
+<span class="hl kwa">set</span> TIME <span class="hl opt">= {</span><span class="hl num">1</span>..<span class="hl kwb">card</span><span class="hl opt">(</span>BEE<span class="hl opt">)+</span><span class="hl num">1</span><span class="hl opt">}</span> <span class="hl kwa">ordered</span><span class="hl opt">;</span>
+
+<span class="hl kwa">param</span> start <span class="hl kwa">symbolic in</span> BEGIN<span class="hl opt">;</span>
+<span class="hl kwa">param end symbolic in</span> END<span class="hl opt">;</span>
+
+<span class="hl kwa">param</span> minutes <span class="hl opt">{</span>BEGIN<span class="hl opt">,</span> END<span class="hl opt">} &gt;=</span> <span class="hl num">0</span> <span class="hl kwa">integer</span><span class="hl opt">;</span>
+
+<span class="hl kwa">var</span> Go <span class="hl opt">{</span>TRUCK<span class="hl opt">,</span> BEGIN<span class="hl opt">,</span> END<span class="hl opt">,</span> TIME<span class="hl opt">}</span> <span class="hl kwa">binary</span><span class="hl opt">;</span>
+
+<span class="hl slc"># minimizing total minutes on road</span>
+<span class="hl kwa">minimize</span> total_time<span class="hl opt">:</span>
+  <span class="hl kwa">sum</span> <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> b <span class="hl kwa">in</span> BEGIN<span class="hl opt">,</span> e <span class="hl kwa">in</span> END<span class="hl opt">,</span> n <span class="hl kwa">in</span> TIME<span class="hl opt">} (</span>Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span>e<span class="hl opt">,</span>n<span class="hl opt">] *</span> minutes<span class="hl opt">[</span>b<span class="hl opt">,</span>e<span class="hl opt">]);</span>
+
+<span class="hl slc"># visit every town</span>
+<span class="hl kwa">subject to</span> go_at_least_once <span class="hl opt">{</span>e <span class="hl kwa">in</span> END<span class="hl opt">}:</span>
+  <span class="hl kwa">sum</span><span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> b <span class="hl kwa">in</span> BEGIN<span class="hl opt">,</span> n <span class="hl kwa">in</span> TIME<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span>e<span class="hl opt">,</span>n<span class="hl opt">] &gt;=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+
+<span class="hl slc"># avoid chosing distance[i,j]=0 where i==j</span>
+<span class="hl kwa">subject to</span> end_equals_begin <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> i <span class="hl kwa">in</span> BEE<span class="hl opt">,</span> n <span class="hl kwa">in</span> TIME<span class="hl opt">}:</span>
+  Go<span class="hl opt">[</span>t<span class="hl opt">,</span>i<span class="hl opt">,</span>i<span class="hl opt">,</span>n<span class="hl opt">] =</span> <span class="hl num">0</span><span class="hl opt">;</span>
+
+<span class="hl slc"># every truck should start from A</span>
+<span class="hl kwa">subject to</span> start_from_a <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">}:</span>
+  <span class="hl kwa">sum</span><span class="hl opt">{</span>e <span class="hl kwa">in</span> END<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>start<span class="hl opt">,</span>e<span class="hl opt">,</span><span class="hl num">1</span><span class="hl opt">] =</span> <span class="hl num">1</span><span class="hl opt">;</span>
+
+<span class="hl slc"># make only one move for every TIME</span>
+<span class="hl kwa">subject to</span> every_time_move_once <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> n <span class="hl kwa">in</span> TIME<span class="hl opt">}:</span>
+  <span class="hl kwa">sum</span><span class="hl opt">{</span>b <span class="hl kwa">in</span> BEGIN<span class="hl opt">,</span> e <span class="hl kwa">in</span> END<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span>e<span class="hl opt">,</span>n<span class="hl opt">] &lt;=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+
+<span class="hl slc"># move from time 1 to time 2 1-&gt;2-&gt;3</span>
+<span class="hl kwa">subject to</span> move_in_order <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> n <span class="hl kwa">in</span> <span class="hl num">1</span>..<span class="hl kwb">last</span><span class="hl opt">(</span>TIME<span class="hl opt">)-</span><span class="hl num">1</span><span class="hl opt">}:</span>
+  <span class="hl kwa">sum</span><span class="hl opt">{</span>b <span class="hl kwa">in</span> BEGIN<span class="hl opt">,</span> e <span class="hl kwa">in</span> END<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span>e<span class="hl opt">,</span>n<span class="hl opt">] &gt;=</span> <span class="hl kwa">sum</span><span class="hl opt">{</span>b <span class="hl kwa">in</span> BEGIN<span class="hl opt">,</span> e <span class="hl kwa">in</span> END<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span>e<span class="hl opt">,</span>n<span class="hl opt">+</span><span class="hl num">1</span><span class="hl opt">];</span>
+
+<span class="hl slc"># if you move from A-&gt;B2 the next move should start from B2</span>
+<span class="hl kwa">subject to</span> continuous_movement <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> n <span class="hl kwa">in</span> <span class="hl num">2</span>..<span class="hl kwb">last</span><span class="hl opt">(</span>TIME<span class="hl opt">),</span> b <span class="hl kwa">in</span> BEE<span class="hl opt">}:</span>
+  <span class="hl kwa">sum</span><span class="hl opt">{</span>e <span class="hl kwa">in</span> END<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span>e<span class="hl opt">,</span>n<span class="hl opt">] =</span> <span class="hl kwa">sum</span><span class="hl opt">{</span>i <span class="hl kwa">in</span> BEGIN<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>i<span class="hl opt">,</span>b<span class="hl opt">,</span>n<span class="hl opt">-</span><span class="hl num">1</span><span class="hl opt">];</span>
+
+<span class="hl slc"># never go from start to end (A-&gt;E)</span>
+<span class="hl kwa">subject to</span> ae <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">,</span> n <span class="hl kwa">in</span> TIME<span class="hl opt">}:</span>
+  Go<span class="hl opt">[</span>t<span class="hl opt">,</span>start<span class="hl opt">,</span><span class="hl kwa">end</span><span class="hl opt">,</span>n<span class="hl opt">] =</span> <span class="hl num">0</span><span class="hl opt">;</span>
+
+<span class="hl slc"># the last move you make should end at E</span>
+<span class="hl kwa">subject to</span> finishAtE <span class="hl opt">{</span>t <span class="hl kwa">in</span> TRUCK<span class="hl opt">}:</span>
+  <span class="hl kwa">sum</span><span class="hl opt">{</span>b <span class="hl kwa">in</span> BEGIN<span class="hl opt">}</span> Go<span class="hl opt">[</span>t<span class="hl opt">,</span>b<span class="hl opt">,</span><span class="hl kwa">end</span><span class="hl opt">,</span><span class="hl kwb">last</span><span class="hl opt">(</span>TIME<span class="hl opt">)] =</span> <span class="hl num">1</span><span class="hl opt">;</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 4.1, http://www.andre-simon.de/-->
+</div>
+<div id="αποτελέσματα-1" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Αποτελέσματα</h2>
+<p>Τρέχουμε τις εξής ενοτλές:</p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>trucks2.ampl</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="hl kwa">reset</span><span class="hl opt">;</span>
+<span class="hl kwa">model</span> trucks2.<span class="hl kwa">mod</span><span class="hl opt">;</span>
+<span class="hl kwa">data</span> trucks2.dat<span class="hl opt">;</span>
+<span class="hl kwa">option</span> solver cplex<span class="hl opt">;</span>
+<span class="hl slc">#option display_round 0;</span>
+<span class="hl kwa">option</span> show_stats <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl kwa">option omit_zero_rows</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl slc">#option omit_zero_cols 1;</span>
+solve<span class="hl opt">;</span>
+<span class="hl kwa">display</span> Go<span class="hl opt">;</span>
+<span class="hl kwa">display</span> total_time<span class="hl opt">;</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 4.1, http://www.andre-simon.de/-->
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  " id="Results">
+<caption style="caption-side: top; text-align: center;"><span id="tab:Results">Table 2.1: </span> Results (ampl output)</caption><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Truck</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">From</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">To</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Time</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Go</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">A</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B4</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B3</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B3</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B6</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B4</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B5</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B5</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">T1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">B6</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">E</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+</table>
+
+<p>Το format του πίνακα <code class="ampl">Go</code> είναι ίδιο με προηγουμένως, και
+βρίσκουμε ότι χρειαζόμαστε <strong>τουλάχιστον 2575 λεπτά</strong> για να πάμε σε
+όλες τις πόλεις και να γυρίσουμε στην πρωτεύουσα.</p>
+<p>Διαδρομή: <code>A -&gt; B4 -&gt; B5 -&gt; B1 -&gt; B2 -&gt; B3 -&gt; B6 -&gt; A</code></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="μεταφορά-εγγράφων.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Operation_Research_ampl.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1045 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Εργασία AMPL},
+  pdfauthor={Στεφανίδης Ιωααννης},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage[LGR, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[greek,english]{babel}
+\usepackage{alphabeta}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{hyperref}
+
+\usepackage{array}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[normalem]{ulem}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Εργασία AMPL}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Επιχειρησιακή Έρευνα 8ο Εξάμηνο}
+\author{Στεφανίδης Ιωααννης}
+\date{2021-06-08}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{ux3c4ux3bf-ux3c0ux3c1ux3ccux3b2ux3bbux3b7ux3bcux3b1}{%
+\section{Το Πρόβλημα}\label{ux3c4ux3bf-ux3c0ux3c1ux3ccux3b2ux3bbux3b7ux3bcux3b1}}
+
+\hypertarget{ux3c3ux3c7ux3adux3b4ux3b9ux3bf-ux3c3ux3c9ux3c4ux3b7ux3c1ux3afux3b1-ux3adux3b3ux3b3ux3c1ux3b1ux3c6ux3b1}{%
+\subsection{Σχέδιο Σωτηρία (έγγραφα)}\label{ux3c3ux3c7ux3adux3b4ux3b9ux3bf-ux3c3ux3c9ux3c4ux3b7ux3c1ux3afux3b1-ux3adux3b3ux3b3ux3c1ux3b1ux3c6ux3b1}}
+
+Σημαντικά κρατικά έγγραφα/αρχεία μιας χώρας είναι αποθηκευμένα σε κεντρικό χώρο
+της πρωτεύουσάς της. Σε περίπτωση κρίσης κρίθηκε σκόπιμο να μεταφερθούν όλα
+αυτά με ειδικά μέσα μεταφοράς, που αποκτήθηκαν με ιδιαίτερα υψηλό κόστος, σε
+άλλες πόλεις της χώρας για να αποφευχθεί είτε η μαζική καταστροφή τους είτε η
+μαζική κατοχή τους απο μη εξουσιοδοτημένους φορείς. Για το λόγο αυτό η χώρα
+μπορεί να διαθέσει μέχρι 8 ειδικά μέσα μεταφοράς, όπου το κάθε ένα μέσο είναι
+δυνατόν να μεταφέρει όλο το αρχειακό υλικό που είναι αποθηκευμένο στην
+πρωτεύουσα. Ο περιορισμός είναι ότι το διαθέσιμο καύσιμο, που έχει το κάθε
+μέσο, του επιτρέπει να διανύσει το μέγιστο 400 χιλιόμετρα, ενώ στο σενάριο που
+εξετάζεται δεν προβλέπεται ανεφοδιασμός των παραπάνω μέσων μεταφοράς. Στον
+παρακάτω Πίνακα 1 δίνονται οι αποστάσεις (σε χιλιόμετρα) μεταξύ του αρχικού
+αποθηκευτικού χώρου Α και των 14 πόλεων (B1, B2, . . . , B14) καθώς και μεταξύ
+των 14 πόλεων. Σε κάθε μία από τις 14 πολεις υπάρχει σχεδιασμός να μεταφερθεί,
+απο την πρωτεύουσα, τουλάχιστον ένα αρχείο/έγγραφο σε περίοδο κρίσης. Ζητούμενο
+είναι να βρεθεί ο ελάχιστος αριθμός των ειδικών μέσων μεταφοράς που απαιτούνται
+για να γίνει η παραπάνω μεταφορά. Στην περίπτωση, που για την επιτυχή περάτωση
+του Σχεδίου 1, ειδικά μέσα μεταφοράς περισσέψουν, τότε αυτά θα μπορούσαν να
+υποστηρίξουν την μεταφορά υλικού (π.χ. ιατροφαρμακευτικού) όπως περιγράφεται
+στο παρακάτω Σχέδιο 2
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:Distances} Distances (near=green and far=red)}
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l l l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{Town} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B1} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B2} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B3} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B4} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B5} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B6} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B7} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B8} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B9} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B10} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B11} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B12} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B13} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B14} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{A} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{205, 165, 0}{180} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{227, 129, 0}{240} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{152, 215, 0}{85} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{241, 95, 0}{285} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{215, 151, 0}{205} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{232, 118, 0}{255} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{175, 197, 0}{120} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{224, 136, 0}{230} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{255, 0, 0}{340} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{221, 142, 0}{220} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{227, 129, 0}{240} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B1} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{232, 118, 0}{255} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{178, 195, 0}{125} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{162, 207, 0}{100} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{203, 168, 0}{175} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{88, 243, 0}{25} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{135, 224, 0}{65} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{159, 210, 0}{95} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{217, 148, 0}{210} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{126, 229, 0}{55} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{219, 145, 0}{215} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B2} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{232, 118, 0}{255} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{166, 205, 0}{105} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{115, 234, 0}{45} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{229, 126, 0}{245} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{232, 118, 0}{255} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{211, 157, 0}{195} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{222, 139, 0}{225} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{248, 69, 0}{310} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{172, 200, 0}{115} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{121, 232, 0}{50} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B3} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{219, 145, 0}{215} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{178, 195, 0}{125} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{201, 171, 0}{170} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{181, 192, 0}{130} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{234, 115, 0}{260} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{213, 154, 0}{200} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{144, 220, 0}{75} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B4} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{178, 195, 0}{125} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{219, 145, 0}{215} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{155, 212, 0}{90} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{181, 192, 0}{130} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{211, 157, 0}{195} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{209, 160, 0}{190} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{121, 232, 0}{50} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{152, 215, 0}{85} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{207, 163, 0}{185} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B5} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{162, 207, 0}{100} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{178, 195, 0}{125} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{155, 212, 0}{90} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{109, 236, 0}{40} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{135, 224, 0}{65} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{175, 197, 0}{120} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B6} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{203, 168, 0}{175} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{166, 205, 0}{105} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{181, 192, 0}{130} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{203, 168, 0}{175} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{213, 154, 0}{200} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{159, 210, 0}{95} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{178, 195, 0}{125} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{222, 139, 0}{225} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{126, 229, 0}{55} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B7} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{115, 234, 0}{45} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{201, 171, 0}{170} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{211, 157, 0}{195} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{231, 122, 0}{250} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{198, 174, 0}{165} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{205, 165, 0}{180} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{242, 90, 0}{290} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{79, 246, 0}{20} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B8} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{88, 243, 0}{25} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{229, 126, 0}{245} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{181, 192, 0}{130} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{203, 168, 0}{175} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 132, 0}{235} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{109, 236, 0}{40} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{222, 139, 0}{225} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{181, 192, 0}{130} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{219, 145, 0}{215} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B9} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{135, 224, 0}{65} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{232, 118, 0}{255} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{209, 160, 0}{190} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{213, 154, 0}{200} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{231, 122, 0}{250} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{109, 236, 0}{40} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{189, 184, 0}{145} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{235, 111, 0}{265} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{162, 207, 0}{100} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{224, 136, 0}{230} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B10} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{159, 210, 0}{95} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{211, 157, 0}{195} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{196, 176, 0}{160} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{121, 232, 0}{50} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{109, 236, 0}{40} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{159, 210, 0}{95} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{198, 174, 0}{165} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{189, 184, 0}{145} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{172, 200, 0}{115} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{166, 205, 0}{105} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{191, 182, 0}{150} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B11} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{217, 148, 0}{210} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{222, 139, 0}{225} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{234, 115, 0}{260} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{152, 215, 0}{85} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{178, 195, 0}{125} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{205, 165, 0}{180} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{222, 139, 0}{225} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{235, 111, 0}{265} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{172, 200, 0}{115} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{227, 129, 0}{240} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{207, 163, 0}{185} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{203, 168, 0}{175} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B12} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{126, 229, 0}{55} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{248, 69, 0}{310} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{213, 154, 0}{200} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{222, 139, 0}{225} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{242, 90, 0}{290} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{162, 207, 0}{100} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{227, 129, 0}{240} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{209, 160, 0}{190} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{237, 107, 0}{270} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B13} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{172, 200, 0}{115} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{144, 220, 0}{75} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{194, 179, 0}{155} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{135, 224, 0}{65} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{140, 222, 0}{70} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 202, 0}{110} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{181, 192, 0}{130} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{135} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{166, 205, 0}{105} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{207, 163, 0}{185} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{209, 160, 0}{190} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{155, 212, 0}{90} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+\hypertarget{ux3c3ux3c7ux3adux3b4ux3b9ux3bf-ux3c3ux3c9ux3c4ux3b7ux3c1ux3afux3b1-ux3b5ux3bcux3b2ux3ccux3bbux3b9ux3b1-covid}{%
+\subsection{Σχέδιο Σωτηρία (εμβόλια covid)}\label{ux3c3ux3c7ux3adux3b4ux3b9ux3bf-ux3c3ux3c9ux3c4ux3b7ux3c1ux3afux3b1-ux3b5ux3bcux3b2ux3ccux3bbux3b9ux3b1-covid}}
+
+Απόφαση της κυβέρνησης είναι τα ειδικά μέσα μεταφοράς, που πιθανά δεν θα
+απαιτηθούν για την επιτυ- χή περάτωση του Σχεδίου 1, να υποστηριξούν την
+γενικότερη προσπάθεια μεταφοράς άλλου υλικού (ας υποθέσουμε ιατροφαρμακευτικού
+υλικού). Συγκεκριμένα, το Σχέδιο 2 προβλέπει ότι αυτά θα πρέπει να ξεκινήσουν
+υπό τη μορφή κομβόι από την πρωτεύουσα Α γεμάτα ιατροφαρμακευτικό υλικό, να
+επισκε- φτούν και τις 6 απομακρυσμένες πόλεις (Γ1, Γ2, . . . , Γ6) και να
+επιστρέψουν πίσω στην πρωτεύουσα. Ο εκτιμώμενος χρόνος ταξιδιού (σε λεπτά) από
+την πρωτεύουσα στις άλλες πόλεις όπως και μεταξύ των 6 πόλεων δίνεται στον
+Πίνακα 2. Σε αυτό το σχέδιο, επιτρέπεται ο ανεφοδιασμός των ειδικών μέσων
+μεταφοράς με καύσιμα και μπορείτε να υποθέσετε οτι ο χρόνος που απαιτείται για
+τον ανεφοδιασμό είναι μηδενικός. Ζητούμενο είναι η σειρά με την οποία θα πρέπει
+τα ειδικά μέσα μεταφοράς να επισκεφτούν τις πόλεις αυτές ώστε να ελαχιστοποιηθεί
+ο συνολικός χρόνος μεταφοράς του ιατροφαρμακευτικού υλικού.
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:Minutes} Minutes (near=green and far=red)}
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{Town} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B1} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B2} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B3} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B4} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B5} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B6} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{A} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{238, 105, 0}{786} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{209, 159, 0}{549} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{223, 137, 0}{657} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{172, 200, 0}{331} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{211, 157, 0}{559} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{153, 214, 0}{250} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B1} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{225, 134, 0}{668} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{255, 0, 0}{979} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{215, 150, 0}{593} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{146, 218, 0}{224} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{249, 64, 0}{905} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B2} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{225, 134, 0}{668} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 203, 0}{316} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{217, 148, 0}{607} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{198, 174, 0}{472} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{197, 175, 0}{467} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B3} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{255, 0, 0}{979} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{169, 203, 0}{316} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{247, 70, 0}{890} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{236, 109, 0}{769} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{185, 188, 0}{400} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B4} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{215, 150, 0}{593} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{217, 148, 0}{607} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{247, 70, 0}{890} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{386} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{211, 157, 0}{559} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textbf{B5} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{146, 218, 0}{224} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{198, 174, 0}{472} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{236, 109, 0}{769} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{183, 190, 0}{386} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{0, 255, 0}{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} \textcolor[RGB]{226, 131, 0}{681} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+\hypertarget{ux3bcux3b5ux3c4ux3b1ux3c6ux3bfux3c1ux3ac-ux3b5ux3b3ux3b3ux3c1ux3acux3c6ux3c9ux3bd}{%
+\section{Μεταφορά Εγγράφων}\label{ux3bcux3b5ux3c4ux3b1ux3c6ux3bfux3c1ux3ac-ux3b5ux3b3ux3b3ux3c1ux3acux3c6ux3c9ux3bd}}
+
+\hypertarget{ux3c4ux3c1ux3ccux3c0ux3bfux3c2-ux3c3ux3baux3adux3c8ux3b7ux3c2}{%
+\subsection{Τρόπος Σκέψης}\label{ux3c4ux3c1ux3ccux3c0ux3bfux3c2-ux3c3ux3baux3adux3c8ux3b7ux3c2}}
+
+Στο 1\textsuperscript{o} ερώτημα θέλουμε να χρησιμοποιήσουμε τον ελάχιστο αριθμό
+φορτηγών για να επισκεφτούμε όλες τις πόλεις έστω και μία φορά. Αρχικά
+σκέφτηκα να χρησιμοποιήσω έναν πίνακα \texttt{BEGIN}\(\times\)\texttt{END} για κάθε φορτηγό,
+άρα το αποτέλεσμα που θα έπαιρνα από την AMPL θα ήταν ένας πίνακας
+\texttt{Go{[}TRUCK,BEGIN,END{]}}. Έτσι θα μπορούσα να ορίσω τον πίνακα ως \texttt{binary}
+και να έχω την τιμή \texttt{1} αν το φορτηγό έκανε την διαδρομή \texttt{row-\textgreater{}column}.
+Το πρόβλημα που αντιμετώπισα ήταν ότι δεν μπορούσα έτσι να ελέγξω αν το
+φορτηγό κάνει συνεχόμενη διαδρομή, δηλαδή αν πάει από το \texttt{A-\textgreater{}B1} μετά να
+πάει από το \texttt{B1-\textgreater{}Bx}.
+
+Κατέληξα λοιπόν να προσθέσω ακόμα μια διάσταση στον πίνακα \texttt{Go}, την
+διάσταση του χρόνου. Οπότε τώρα έχουμε έναν πίνακα
+\texttt{Go{[}TRUCK,BEGIN,END,TIME{]}} όπου για κάθε \texttt{TIME} το φορτηγό θα κάνει μία
+κίνηση, δηλαδή για \texttt{ΤΙΜΕ=1} το φορτηγό θα πάει από \texttt{A-\textgreater{}Bx}, και τώρα
+μπορούμε να δημιουργήσουμε περιορισμό ότι για \texttt{TIME=2} το φορτηγό θα
+ξεκινήσει από το τέλος του \texttt{ΤΙΜΕ=1} το \texttt{Bx}.
+
+Επίσης όπως θα δείτε στην συνέχεια στα Δεδομένα έχει προστεθεί ένας επιπλέον
+προορισμός \texttt{E}. Αυτό είναι απαραίτητο ώστε ο περιορισμός 7 να μπορεί να ισχύει
+για το τελευταίο \texttt{Β} που θα επισκεφτεί το φορτηγό.
+
+Τέλος στο Μοντέλο έχουμε 2 objective functions \texttt{total\_distance} και
+\texttt{num\_of\_trucks}. Η AMPL επιλέγει αυτόματα την πρώτη objective συνάρτηση, αλλά
+και με την δεύτερη παίρνουμε το ίδιο αποτέλεσμα (την έχω αφήσει για να κάνω
+\texttt{display} τον αριθμό των φορτηγών).
+
+\hypertarget{ux3c0ux3b5ux3c1ux3b9ux3bfux3c1ux3b9ux3c3ux3bcux3bfux3af}{%
+\subsection{Περιορισμοί}\label{ux3c0ux3b5ux3c1ux3b9ux3bfux3c1ux3b9ux3c3ux3bcux3bfux3af}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Κάθε φορτηγό μπορεί να κάνει το πολύ 400 χιλιόμετρα}
+\item
+  \textbf{Πρέπει να περάσουμε απ' όλες τις πόλεις}
+\item
+  \textbf{Αρχή} \(\neq\) \textbf{Τέλος}: να μην διαλέξουμε ποτέ μια διαδρομή που η αρχή
+  είναι ίδια με το τέλος (δεν βγάζει φυσικό νόημα, αλλά στην AMPL
+  πρέπει να διευκρινιστεί).
+\item
+  \textbf{Ξεκίνημα από την αφετηρία}: κάθε φορτηγό για \texttt{TIME=1} πρέπει να
+  ξεκινάει από το \texttt{Α}.
+\item
+  \textbf{Μια κίνηση την φορά}: σε κάθε TIME κάνε μία ή καμία κίνηση.
+\item
+  \textbf{Μην αφήσεις κενά \texttt{TIME}}: αν χρησιμοποιήσεις το \texttt{TIME=n} να έχεις
+  χρησιμοποιήσει πρώτα το \texttt{TIME=n-1}.
+\item
+  \textbf{Διαδοχικές κινήσεις}: αν για \texttt{ΤΙΜΕ=n:} \texttt{A-\textgreater{}B1,} τότε για
+  \texttt{TIME=n+1} \texttt{B1-\textgreater{}Bx}.
+\item
+  \textbf{Μην πας από την αρχή στο τέλος}: ο περιορισμός αυτός χρειάζεται
+  γιατί εφόσον για να πάω από το \texttt{Α} στο \texttt{Ε} είναι 0 χιλιόμετρα η AMPL
+  θα κάνει κάθε φορά αυτή την κίνηση ακόμα και σε φορτηγά που δεν
+  χρησιμοποιούμε, ενώ δεν χρειάζεται.
+\end{enumerate}
+
+\hypertarget{ux3b4ux3b5ux3b4ux3bfux3bcux3adux3bdux3b1-ampl}{%
+\subsection{Δεδομένα AMPL}\label{ux3b4ux3b5ux3b4ux3bfux3bcux3adux3bdux3b1-ampl}}
+
+\hypertarget{mux3bfux3bdux3c4ux3adux3bbux3bf-ampl}{%
+\subsection{Mοντέλο AMPL}\label{mux3bfux3bdux3c4ux3adux3bbux3bf-ampl}}
+
+\hypertarget{ux3b1ux3c0ux3bfux3c4ux3b5ux3bbux3adux3c3ux3bcux3b1ux3c4ux3b1}{%
+\subsection{Αποτελέσματα}\label{ux3b1ux3c0ux3bfux3c4ux3b5ux3bbux3adux3c3ux3bcux3b1ux3c4ux3b1}}
+
+Τρέχουμε τις εξής ενοτλές:
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:Results} Results (ampl output)}
+ \setlength{\tabcolsep}{0pt}
+\begin{tabularx}{0.5\textwidth}{p{0.1\textwidth} p{0.1\textwidth} p{0.1\textwidth} p{0.1\textwidth} p{0.1\textwidth}}
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{Truck}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{From}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{To}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{Time}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{Go}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering A\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B9\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B12\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B9\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B12\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering E\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering A\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering E\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B13\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B6\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B14\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B7\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 6\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B13\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B6\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B14\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B7\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering A\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B11\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B10\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B10\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T8\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B11\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering E\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+\end{tabularx}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+Στον πίνακα \texttt{Go} στην 1\textsuperscript{η} στήλη βλέπουμε τον αριθμό του φορτηγού, στην 2\textsuperscript{η}
+από που ξεκίνησε και στην 3\textsuperscript{η} που πήγε. Στην 4\textsuperscript{η}
+
+στήλη φαίνεται η στιγμή που έκανε το φορτηγό την συγκεκριμένη διαδρομή,
+άρα βλέποντας την 4\textsuperscript{η} στήλη μπορούμε εύκολα να βρούμε
+την πορεία του φορτηγού.
+
+Άρα χρησιμοποιήσαμε \textbf{3 φορτηγά και κάναμε σύνολο 970 χιλιόμετρα}.
+Διαδρομές:
+
+\begin{itemize}
+\tightlist
+\item
+  T1 \texttt{A\ -\textgreater{}\ B3\ -\textgreater{}\ B13\ -\textgreater{}\ B6\ -\textgreater{}\ B14\ -\textgreater{}\ B7\ -\textgreater{}\ B2}
+\item
+  T2 \texttt{A\ -\textgreater{}\ B5\ -\textgreater{}\ B10\ -\textgreater{}\ B4\ -\textgreater{}\ B11}
+\item
+  T8 \texttt{A\ -\textgreater{}\ B9\ -\textgreater{}\ B8\ -\textgreater{}\ B1\ -\textgreater{}\ B12}
+\end{itemize}
+
+\hypertarget{ux3bcux3b5ux3c4ux3b1ux3c6ux3bfux3c1ux3ac-ux3b5ux3bcux3b2ux3bfux3bbux3afux3c9ux3bd}{%
+\section{Μεταφορά Εμβολίων}\label{ux3bcux3b5ux3c4ux3b1ux3c6ux3bfux3c1ux3ac-ux3b5ux3bcux3b2ux3bfux3bbux3afux3c9ux3bd}}
+
+\hypertarget{ux3c4ux3c1ux3ccux3c0ux3bfux3c2-ux3c3ux3baux3adux3c8ux3b7ux3c2-1}{%
+\subsection{Τρόπος Σκέψης}\label{ux3c4ux3c1ux3ccux3c0ux3bfux3c2-ux3c3ux3baux3adux3c8ux3b7ux3c2-1}}
+
+Στο 2\textsuperscript{ο} ερώτημα ζητείτε να βρεθεί η πιο σύντομη σε χρόνο διαδρομή που
+περνάει απ' όλες τις πόλεις και επιστρέφει στην πρωτεύουσα. Έχοντας ήδη
+κάνει το 1\textsuperscript{ο} ερώτημα, μπορούμε να τροποποιήσουμε ελάχιστα το μοντέλο
+μας για να είναι λειτουργικό σε αυτό το πρόβλημα.
+
+Περνάμε λοιπόν τα νέα δεδομένα αλλά αυτή την φορά ορίζουμε μόνο ένα
+φορτηγό, αφού μας δίνεται ότι τα 5 φορτηγά θα φύγουν κομβόι. Στο μοντέλο
+θα αντικαταστήσουμε τον πίνακα \texttt{distance} με \texttt{minutes} καθώς και θα
+αλλάξουμε τον περιορισμό για την εκκίνηση από την αφετηρία ώστε να
+εννοούμε να χρησιμοποιηθεί κάθε διαθέσιμο φορτηγό (στην περίπτωση μας
+είναι μόνο 1).
+
+\hypertarget{ux3c0ux3b5ux3c1ux3b9ux3bfux3c1ux3b9ux3c3ux3bcux3bfux3af-1}{%
+\subsection{Περιορισμοί}\label{ux3c0ux3b5ux3c1ux3b9ux3bfux3c1ux3b9ux3c3ux3bcux3bfux3af-1}}
+
+Έχουμε μόνο έναν νέο περιορισμό:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Επιστροφή στην πρωτεύουσα}: θέλουμε η κίνηση που θα γίνει στο
+  τελευταίο \texttt{TIME} να έχει προορισμό την πρωτεύουσα (που έχει
+  ονομαστεί και \texttt{A} και \texttt{Ε})
+\end{enumerate}
+
+\hypertarget{ux3b4ux3b5ux3b4ux3bfux3bcux3adux3bdux3b1-ampl-1}{%
+\subsection{Δεδομένα AMPL}\label{ux3b4ux3b5ux3b4ux3bfux3bcux3adux3bdux3b1-ampl-1}}
+
+\hypertarget{mux3bfux3bdux3c4ux3adux3bbux3bf-ampl-1}{%
+\subsection{Mοντέλο AMPL}\label{mux3bfux3bdux3c4ux3adux3bbux3bf-ampl-1}}
+
+\hypertarget{ux3b1ux3c0ux3bfux3c4ux3b5ux3bbux3adux3c3ux3bcux3b1ux3c4ux3b1-1}{%
+\subsection{Αποτελέσματα}\label{ux3b1ux3c0ux3bfux3c4ux3b5ux3bbux3adux3c3ux3bcux3b1ux3c4ux3b1-1}}
+
+Τρέχουμε τις εξής ενοτλές:
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:Results} Results (ampl output)}
+ \setlength{\tabcolsep}{0pt}
+\begin{tabularx}{0.5\textwidth}{p{0.1\textwidth} p{0.1\textwidth} p{0.1\textwidth} p{0.1\textwidth} p{0.1\textwidth}}
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{Truck}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{From}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{To}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{Time}\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{Go}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering A\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B6\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 6\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B4\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 2\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B5\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering T1\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering B6\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering E\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7\huxbpad{6pt}}} &
+\multicolumn{1}{p{0.1\textwidth}!{\huxvb{0, 0, 0}{1}}}{\hspace{6pt}\parbox[b]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+\end{tabularx}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+Το format του πίνακα \texttt{Go} είναι ίδιο με προηγουμένως, και
+βρίσκουμε ότι χρειαζόμαστε \textbf{τουλάχιστον 2575 λεπτά} για να πάμε σε
+όλες τις πόλεις και να γυρίσουμε στην πρωτεύουσα.
+
+Διαδρομή: \texttt{A\ -\textgreater{}\ B4\ -\textgreater{}\ B5\ -\textgreater{}\ B1\ -\textgreater{}\ B2\ -\textgreater{}\ B3\ -\textgreater{}\ B6\ -\textgreater{}\ A}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

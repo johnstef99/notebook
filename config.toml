@@ -1,0 +1,37 @@
+baseURL = 'https://notebook.johnstef.com'
+languageCode = 'el'
+theme = "nightfall"
+
+[menu]
+  [[menu.header]]
+    name = "assignments"
+    weight = 1
+    url = "assignments"
+  [[menu.header]]
+    name = "posts"
+    weight = 1
+    url = "posts"
+  [[menu.header]]
+    name = "about"
+    weight = 0
+    url = "about"
+
+[params]
+author = "johnstef"
+user = "notebook"
+hostname = "ee.auth.gr"
+
+[[params.social]]
+key = 0
+name = "portfolio"
+url = "https://johnstef.com"
+
+[[params.social]]
+key = 1
+name = "github"
+url = "https://github.com/johnstef99"
+
+[[params.social]]
+key = 2
+name = "email"
+url = "mailto:john@johnstef.com"

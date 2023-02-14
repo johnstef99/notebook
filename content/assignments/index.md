@@ -1,0 +1,83 @@
+---
+title: "Assignments"
+date: 2023-02-14T01:19:06+02:00
+---
+
+[Notebook source code](https://github.com/johnstef99/js-notebook)
+
+---------
+
+2{{< sup "ο" >}} Εξάμηνο
+=============
+
+#### Αντικειμενοστρεφής Προγραμματισμός
+* [MasterChef C++](https://github.com/johnstef99/oop-auth)
+
+---------
+
+3{{< sup "ο" >}} Εξάμηνο
+=============
+
+#### Δομές Δεδομένων
+* [Snake](https://github.com/johnstef99/data_structures_auth)
+
+---------
+
+6{{< sup "ο" >}} Εξάμηνο
+=============
+
+#### Δίκτυα Ι
+* [Java serial communications ](https://github.com/johnstef99/ithakiJavaSerialCommunication)
+
+---------
+
+7{{< sup "ο" >}} Εξάμηνο
+=============
+
+#### Δίκτυα ΙΙ
+* [Java network socket programming](https://github.com/johnstef99/networks_2)
+
+#### Αρχιτεκτονική Προηγμένων Υπολογιστών
+* [ARM Bencmarks](https://github.com/johnstef99/computer_architecture)
+
+---------
+
+8{{< sup "ο" >}} Εξάμηνο
+=============
+
+#### Επιχειριακή Έρευνα
+* [AMPL Assignment](operational_research)
+  * [How to crack ampl student version](/posts/crack-ampl)
+
+#### Εφαρμογές Τηλεπικοινωνιακών Διατάξεων
+* [Flex Sensor](https://github.com/johnstef99/groff-examples/tree/master/flex_sensor_pdf)
+  παράδειγμα χρήσης του εργαλείου [groff](https://www.gnu.org/software/groff/)
+  το οποίο δημιουργεί pdf όπως πχ. το latex.
+
+#### Κβαντική Φυσική
+* [Λυμένες Ασκήσεις](quantum_physics)
+(χρειάζεται μερικές διορθώσεις γιατί έγινε μετατροπή από latex και οι λύσεις δεν
+είναι 100% σωστές)
+
+#### Τεχνολογία Λογισμικού
+* [Goal-dsl hackathon](https://github.com/johnstef99/goal-dsl-hackathon)
+
+---------
+
+9{{< sup "ο" >}} Εξάμηνο
+=============
+
+#### Τεχνολογία Ήχου και Εικόνας
+* [Classification of Heart Sound Recordings](https://github.com/johnstef99/tech_of_sound_and_image)
+
+#### Βάσεις Δεδομένων
+* [GoT-DB](https://github.com/johnstef99/GoT-db-auth)
+
+#### Βιομηχανική Πληροφορική
+* [Εργασία 2022 - Silo](https://drive.google.com/drive/folders/1oSPkj8ns8Ju46sB1Oqd6e721F65jyWk4?usp=sharing)
+
+<br/>
+<br/>
+<a
+href="https://donate.cipherdogs.net/?address=43NR6AcQPGo7weCGouMm73UkJ3DmjMXXm4tBG8H4e4gLg1jQFCcb2DkURJyGiJyUyuSDFcqa8Emsxhjs8cS8JhA8Ah7tSm6"><img
+height="30" width="30" src="https://donate.cipherdogs.net//img/monero.png">  Donate XMR</a>
