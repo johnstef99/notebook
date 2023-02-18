@@ -40,6 +40,14 @@ date: 2023-02-14T01:19:06+02:00
 #### Αρχιτεκτονική Προηγμένων Υπολογιστών
 * [ARM Bencmarks](https://github.com/johnstef99/computer_architecture)
 
+#### Ψηφιακά Συστήματα HW σε Χαμηλά Επίπεδα Λογικής Ι
+* [UART and 7-segment display](https://github.com/johnstef99/hw1-auth)
+
+#### Παράλληλα και Διανεμημένα Συστήματα
+* [SCC Coloring Algorithm in parallel with C](https://github.com/johnstef99/scc_madness)
+* [Brute-force all-kNN search algorithm implementation using MPI](https://github.com/johnstef99/mpi-nextdoor)
+* [Fast Graphlet Transform using CUDA](https://github.com/johnstef99/fglt_aorl)
+
 ---------
 
 8{{< sup "ο" >}} Εξάμηνο
