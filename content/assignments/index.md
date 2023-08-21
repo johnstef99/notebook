@@ -84,3 +84,6 @@ showMetadata: false
 
 #### Βιομηχανική Πληροφορική
 * [Εργασία 2022 - Silo](https://drive.google.com/drive/folders/1oSPkj8ns8Ju46sB1Oqd6e721F65jyWk4?usp=sharing)
+
+#### Σχεδίαση Συστημάτων VLSI
+* [Memristors](memristors.pdf)
