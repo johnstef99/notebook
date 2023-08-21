@@ -1,6 +1,7 @@
 ---
 title: "Assignments"
 date: 2023-02-14T01:19:06+02:00
+showMetadata: false
 ---
 
 [Notebook source code](https://github.com/johnstef99/notebook)

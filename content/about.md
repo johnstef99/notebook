@@ -1,6 +1,7 @@
 ---
 title: "About Me"
 date: 2023-02-14T01:15:52+02:00
+showMetadata: false
 ---
 
 **Ιωάννης Στεφανίδης** - [john@johnstef.com](mailto:john@johnstef.com)
